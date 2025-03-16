@@ -29,6 +29,9 @@ function agregarPersona() {
     alert(`Nombre: ${persona.nombre}, Peso: ${persona.peso}, Altura: ${persona.altura}, IMC: ${persona.imc}`);
 }
 
-agregarPersona();
-
-//FALTA LOOP
+//bucle
+let continuar = true;
+while (continuar){
+    agregarPersona();
+    continuar = confirm("Desea ingresar otra persona?");
+}
