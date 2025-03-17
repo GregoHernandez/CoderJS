@@ -1,3 +1,5 @@
+// calculadora de indice de masa corporal en construccion
+
 //constructor
 const Persona = function(nombre, peso, altura) {
     this.nombre = nombre;
@@ -6,11 +8,13 @@ const Persona = function(nombre, peso, altura) {
     this.imc = calcularIMC(peso, altura);
 };
 
+let persona1 = new Persona ("Gregorio", 82, 1.79)
+
 const listaPersonas = [];
 
 //funcion imc
 function calcularIMC(peso, altura) {
-    return (peso / (altura * altura));
+    return (peso / (altura * altura)).toFixed(2);
 }
 
 //agregar
