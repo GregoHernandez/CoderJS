@@ -1,4 +1,5 @@
 // calculadora de indice de masa corporal en construccion
+//no me funciona
 
 //constructor
 const Persona = function(nombre, peso, altura) {
@@ -12,7 +13,7 @@ const Persona = function(nombre, peso, altura) {
 function calcularIMC(peso, altura) {
     return (peso / (altura * altura)).toFixed(2);
 }
-//----------------------------- DOM(dolor de huevo)------------------------------------//
+//----------------------------- DOM(dolor on myballs)------------------------------------//
 
 const formulario = document.getElementById("formularioIMC");
 const resultado = document.getElementById("resultado");
