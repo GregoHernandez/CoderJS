@@ -8,34 +8,51 @@ const Persona = function(nombre, peso, altura) {
     this.imc = calcularIMC(peso, altura);
 };
 
-let persona1 = new Persona ("Gregorio", 82, 1.79)
-
-const listaPersonas = [];
-
 //funcion imc
 function calcularIMC(peso, altura) {
     return (peso / (altura * altura)).toFixed(2);
 }
+//----------------------------- DOM(dolor de huevo)------------------------------------//
+
+const formulario = document.getElementById("formularioIMC");
+const resultado = document.getElementById("resultado");
+const listaPersonas = document.getElementById("listaPersonas");
+
+let personas = JSON.parse(localStorage.getItem("personas")) || [];
+mostrarPersonas();
+
+formulario.addEventListener("submit", function(event) {
+    event.preventDefault(); 
+    agregarPersona();
+});
 
 //agregar
 function agregarPersona() {
-    let nombre = prompt("Ingrese su nombre:").trim();
-    let peso = parseFloat(prompt("Ingrese su peso en kg:"));
-    let altura = parseFloat(prompt("Ingrese su altura en metros (ejemplo: 1.80):"));
+    let nombre = document.getElementById("nombre").value.trim();
+    let peso = parseFloat(document.getElementById("peso").value);
+    let altura = parseFloat(document.getElementById("altura").value);
     
     if (isNaN(peso) || isNaN(altura) || nombre === "") {
-        alert("Por favor, ingrese datos válidos.");
+        Swal.fire("Error", "Por favor, ingrese datos válidos.", "error");
         return;
     }
     
     let persona = new Persona(nombre, peso, altura);
-    listaPersonas.push(persona);
-    alert(`Nombre: ${persona.nombre}, Peso: ${persona.peso}, Altura: ${persona.altura}, IMC: ${persona.imc}`);
+    personas.push(persona);
+    localStorage.setItem("personas", JSON.stringify(personas));
+    
+    mostrarPersonas();
+    resultado.textContent = `IMC de ${persona.nombre}: ${persona.imc}`;
+    formulario.reset();
 }
 
-//bucle
-let continuar = true;
-while (continuar){
-    agregarPersona();
-    continuar = confirm("Desea ingresar otra persona?");
+//mostrar personas en lista
+
+function mostrarPersonas() {
+    listaPersonas.innerHTML = "";
+    personas.forEach(persona => {
+        let li = document.createElement("li");
+        li.textContent = `${persona.nombre} - IMC: ${persona.imc} - PESO:${persona.peso} - ALTURA:${persona.altura}`;
+        listaPersonas.appendChild(li);
+    });
 }

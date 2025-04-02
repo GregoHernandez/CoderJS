@@ -3,9 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora IMC</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+
+    <form id="formularioIMC">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="number" id="peso" placeholder="Peso en kg">
+        <input type="number" id="altura" placeholder="Altura en metros">
+        <button type="submit">Calcular IMC</button>
+    </form>
+    <p id="resultado"></p>
+    <ul id="listaPersonas"></ul>
+    
+
     <script src="main.js"></script>
 </body>
 </html>
