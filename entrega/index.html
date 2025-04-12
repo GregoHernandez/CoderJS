@@ -9,9 +9,9 @@
 <body>
 
     <form id="formularioIMC">
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="number" id="peso" placeholder="Peso en kg">
-        <input type="number" id="altura" placeholder="Altura en metros">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="number" id="peso" placeholder="Peso en kg" step="0.1" required>
+        <input type="number" id="altura" placeholder="Altura en metros (ej: 1.75)" step="0.01" required>
         <button type="submit">Calcular IMC</button>
     </form>
     <p id="resultado"></p>
