@@ -67,8 +67,11 @@ function agregarPersona() {
     localStorage.setItem("personas", JSON.stringify(personas));
     
     mostrarPersonas();
-    resultado.textContent = `IMC de ${persona.nombre}: ${persona.imc}`;
+    
+    let categoria = clasificarIMC(persona.imc);
+    resultado.innerHTML = `IMC de <strong>${persona.nombre}</strong>: <span style="color:#ff4d4d">${persona.imc}</span> - <em>${categoria}</em>`;
     formulario.reset();
+    
 }
 
 // Mostrar personas en lista
@@ -87,3 +90,13 @@ botonLimpiar.addEventListener("click", function() {
     localStorage.removeItem("personas"); 
     mostrarPersonas();
 });
+
+
+//clasificarr
+
+function clasificarIMC(imc) {
+    if (imc < 18.5) return "Bajo peso";
+    if (imc >= 18.5 && imc < 25) return "Normal";
+    if (imc >= 25 && imc < 30) return "Sobrepeso";
+    return "Obesidad";
+}

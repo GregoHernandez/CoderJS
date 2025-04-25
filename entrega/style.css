@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 60px 20px 40px;
     box-sizing: border-box;
-    font-family: 'Orbitron', Arial, sans-serif; /* Tipografía más futurista y fuerte */
+    font-family: 'Orbitron', Arial, sans-serif; 
     background-image: url('img/fondo.jpg');
     background-size: cover;
     background-position: center;
@@ -24,12 +24,12 @@ form {
     background-color: rgba(10, 10, 10, 0.85);
     padding: 30px 25px;
     border-radius: 12px;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2); /* Sombra roja tenue */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2); 
     display: flex;
     flex-direction: column;
     gap: 15px;
     width: 100%;
-    border: 1px solid #ff2c2c22; /* Borde rojo sutil */
+    border: 1px solid #ff2c2c22; 
 }
 
 input, button {
