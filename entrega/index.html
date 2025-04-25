@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora IMC</title>
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-
-    <form id="formularioIMC">
-        <input type="text" id="nombre" placeholder="Nombre" required>
-        <input type="number" id="peso" placeholder="Peso en kg" step="0.1" required>
-        <input type="number" id="altura" placeholder="Altura en metros (ej: 1.75)" step="0.01" required>
-        <button type="submit">Calcular IMC</button>
-    </form>
-    <p id="resultado"></p>
-    <ul id="listaPersonas"></ul>
-    
+    <div class="contenedor">
+        <form id="formularioIMC">
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="number" id="peso" placeholder="Peso en kg" step="0.1" >
+            <input type="number" id="altura" placeholder="Altura en metros (ej: 1.75)" step="0.01">
+            <button type="submit">Calcular IMC</button>
+            <button type="button" id="limpiarLista">Limpiar Lista</button> 
+        </form>
+        <p id="resultado"></p>
+        <section class="lista-contenedor">
+            <h2>Registros</h2>
+            <ul id="listaPersonas"></ul>
+        </section>
+        
+    </div>
 
     <script src="main.js"></script>
 </body>

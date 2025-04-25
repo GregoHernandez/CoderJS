@@ -9,25 +9,49 @@ const Persona = function(nombre, peso, altura) {
     this.imc = calcularIMC(peso, altura);
 };
 
-//funcion imc
+// Función para calcular el IMC
 function calcularIMC(peso, altura) {
-    return (peso / (altura * altura)).toFixed(2);
+    return parseFloat((peso / (altura * altura)).toFixed(2));
 }
-//----------------------------- DOM(dolor on myballs)------------------------------------//
+
+//----------------------------- DOM------------------------------------//
 
 const formulario = document.getElementById("formularioIMC");
 const resultado = document.getElementById("resultado");
 const listaPersonas = document.getElementById("listaPersonas");
+const botonLimpiar = document.getElementById("limpiarLista"); // Obtener el botón de limpiar
 
 let personas = JSON.parse(localStorage.getItem("personas")) || [];
 mostrarPersonas();
+
+// Cargar datos desde un archivo JSON
+async function cargarDatos() {
+    try {
+        const response = await fetch('datos.json'); // Asegúrate de que la ruta sea correcta
+        if (!response.ok) {
+            throw new Error('Error en la respuesta de la red');
+        }
+        const data = await response.json();
+        data.forEach(item => {
+            let persona = new Persona(item.nombre, item.peso, item.altura);
+            personas.push(persona);
+        });
+        localStorage.setItem("personas", JSON.stringify(personas));
+        mostrarPersonas();
+    } catch (error) {
+        console.error("Error al cargar los datos:", error);
+    }
+}
+
+// Llamar a la función para cargar los datos
+cargarDatos();
 
 formulario.addEventListener("submit", function(event) {
     event.preventDefault(); 
     agregarPersona();
 });
 
-//agregar
+// Agregar persona
 function agregarPersona() {
     let nombre = document.getElementById("nombre").value.trim();
     let peso = parseFloat(document.getElementById("peso").value);
@@ -47,13 +71,19 @@ function agregarPersona() {
     formulario.reset();
 }
 
-//mostrar personas en lista
-
+// Mostrar personas en lista
 function mostrarPersonas() {
     listaPersonas.innerHTML = "";
     personas.forEach(persona => {
         let li = document.createElement("li");
-        li.textContent = `${persona.nombre} - IMC: ${persona.imc} - PESO:${persona.peso} - ALTURA:${persona.altura}`;
+        li.textContent = `${persona.nombre} - IMC: ${persona.imc} - PESO: ${persona.peso} - ALTURA: ${persona.altura}`;
         listaPersonas.appendChild(li);
     });
 }
+
+// Limpiar lista
+botonLimpiar.addEventListener("click", function() {
+    personas = []; 
+    localStorage.removeItem("personas"); 
+    mostrarPersonas();
+});
